@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary-accent: #A2D2FF;
+  --color-secondary-accent: #FFC8DD;
+  --color-warm-accent: #FFD6A5;
+  --color-soft-highlight: #FDFFB6;
+  --color-cream: #FFFDF7;
+  --color-main-text: #1F2933;
+  --color-muted-text: #6B7280;
+  --color-border: #ECECEC;
+  --color-card-bg: #FFFFFF;
+
+  --font-family-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+}
+
+@keyframes greeting-in {
+  from { opacity: 0; transform: translateY(70%); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+@keyframes greeting-out {
+  from { opacity: 1; transform: translateY(0);    }
+  to   { opacity: 0; transform: translateY(-70%); }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #FFFDF7;
+  color: #1F2933;
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
