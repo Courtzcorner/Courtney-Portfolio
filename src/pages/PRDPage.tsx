@@ -1,5 +1,6 @@
 import { Download } from 'lucide-react'
 import { prds } from '../data/portfolio'
+import { asset } from '../utils/asset'
 
 export default function PRDPage() {
   return (
@@ -62,7 +63,7 @@ export default function PRDPage() {
                   </div>
 
                   <a
-                    href={prd.downloadHref}
+                    href={asset(prd.downloadHref)}
                     download
                     className="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-lg transition-colors w-full"
                     style={{ backgroundColor: accent + '33', color: textColor }}

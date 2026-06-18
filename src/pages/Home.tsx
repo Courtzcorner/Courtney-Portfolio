@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ArrowDown, ArrowUpRight, Download, Mail } from 'lucide-react'
 import { personal, resumeHref } from '../data/portfolio'
+import { asset } from '../utils/asset'
 import RotatingGreeting from '../components/RotatingGreeting'
 import Involvement from '../components/Involvement'
 import RecentPosts from '../components/RecentPosts'
@@ -97,7 +98,7 @@ export default function Home() {
                   View Experience
                 </Link>
                 <a
-                  href={resumeHref}
+                  href={asset(resumeHref)}
                   download
                   className="inline-flex items-center gap-2 px-6 py-3 border border-[#ECECEC] dark:border-[#252B3B] text-[#1F2933] dark:text-[#F0EFE9] text-sm font-semibold rounded-lg bg-white dark:bg-[#181C27] hover:border-[#A2D2FF] dark:hover:border-[#FDFFB6] transition-colors"
                 >
@@ -135,7 +136,7 @@ export default function Home() {
                 <div className="absolute -top-3 -left-3 w-16 h-16 rounded-full opacity-25"
                   style={{ backgroundColor: '#A2D2FF' }} />
                 <img
-                  src="/assets/profile/headshot.jpg"
+                  src={asset('/assets/profile/headshot.jpg')}
                   alt="Courtney Stokes headshot"
                   className="relative z-10 w-56 h-56 md:w-72 md:h-72 rounded-2xl object-cover shadow-lg border-4 border-white dark:border-[#181C27]"
                   onError={(e) => {

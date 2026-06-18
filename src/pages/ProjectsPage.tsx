@@ -1,5 +1,6 @@
 import { ArrowUpRight, Lock } from 'lucide-react'
 import { projects } from '../data/portfolio'
+import { asset } from '../utils/asset'
 
 export default function ProjectsPage() {
   return (
@@ -70,11 +71,10 @@ export default function ProjectsPage() {
                       <p className="text-xs text-[#6B7280] dark:text-[#8892AA]">{project.classifiedNote}</p>
                     )}
                   </div>
-                ) : project.buttonHref ? (
+                  ) : project.buttonHref ? (
                   <a
-                    href={project.buttonHref}
-                    {...(project.download ? { download: true } : {})}
-                    {...(!project.download && project.buttonHref !== '#' ? { target: '_blank', rel: 'noreferrer' } : {})}
+                    href={project.download ? asset(project.buttonHref) : project.buttonHref}
+                    {...(project.download ? { download: true } : { target: '_blank', rel: 'noreferrer' })}
                     className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#5B9EC8] dark:text-[#FDFFB6] hover:text-[#3D7FA8] dark:hover:text-[#FFD6A5] transition-colors"
                   >
                     {project.buttonText}

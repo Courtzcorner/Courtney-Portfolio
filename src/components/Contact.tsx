@@ -1,5 +1,6 @@
 import { Mail, ArrowUpRight, Download } from 'lucide-react'
 import { personal, resumeHref } from '../data/portfolio'
+import { asset } from '../utils/asset'
 
 const LinkedinIcon = () => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
@@ -53,7 +54,7 @@ export default function Contact() {
             <ContactLink href={personal.linkedin} icon={<LinkedinIcon />} label="LinkedIn" external />
             <ContactLink href={personal.github} icon={<GithubIcon />} label="GitHub" external />
             <a
-              href={resumeHref}
+              href={asset(resumeHref)}
               download
               className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#A2D2FF] dark:bg-[#FDFFB6] text-[#1F2933] text-sm font-semibold rounded-lg hover:bg-[#BDE0FE] dark:hover:bg-[#FFD6A5] transition-colors mt-1"
             >

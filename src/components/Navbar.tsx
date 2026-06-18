@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { Menu, X, Download, Sun, Moon } from 'lucide-react'
 import { resumeHref } from '../data/portfolio'
 import { useTheme } from '../context/ThemeContext'
+import { asset } from '../utils/asset'
 
 const navLinks = [
   { label: 'Home', to: '/' },
@@ -35,7 +36,7 @@ export default function Navbar() {
         <NavLink to="/" className="flex items-center gap-2.5 group flex-shrink-0" aria-label="Home">
           {avatarLoaded ? (
             <img
-              src="/assets/profile/notion-avatar.png"
+              src={asset('/assets/profile/notion-avatar.png')}
               alt="Courtney Stokes avatar"
               className="w-9 h-9 rounded-full object-cover border-2 border-[#ECECEC] dark:border-[#252B3B] shadow-sm group-hover:border-[#A2D2FF] dark:group-hover:border-[#FDFFB6] transition-colors"
               onError={() => setAvatarLoaded(false)}
@@ -71,7 +72,7 @@ export default function Navbar() {
           </button>
 
           <a
-            href={resumeHref}
+            href={asset(resumeHref)}
             download
             className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-[#A2D2FF] dark:bg-[#FDFFB6] text-[#1F2933] text-sm font-semibold rounded-lg hover:bg-[#BDE0FE] dark:hover:bg-[#FFD6A5] transition-colors"
           >
@@ -120,7 +121,7 @@ export default function Navbar() {
             </NavLink>
           ))}
           <a
-            href={resumeHref}
+            href={asset(resumeHref)}
             download
             onClick={() => setOpen(false)}
             className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#A2D2FF] dark:bg-[#FDFFB6] text-[#1F2933] text-sm font-semibold rounded-lg hover:bg-[#BDE0FE] dark:hover:bg-[#FFD6A5] transition-colors w-fit mt-1"
