@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider } from './context/ThemeContext'
 import Layout from './components/Layout'
 import Home from './pages/Home'
@@ -9,7 +9,7 @@ import PRDPage from './pages/PRDPage'
 export default function App() {
   return (
     <ThemeProvider>
-    <HashRouter>
+    <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Home />} />
@@ -18,7 +18,7 @@ export default function App() {
           <Route path="prds" element={<PRDPage />} />
         </Route>
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
     </ThemeProvider>
   )
 }

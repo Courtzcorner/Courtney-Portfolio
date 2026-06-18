@@ -11,14 +11,13 @@ A multi-page portfolio with these routes:
 | Route | Page |
 |---|---|
 | `/` | Home — Hero, Recent Posts, Campus Involvement, Explore More |
-| `#/projects` | Projects — FSU ITS 3D Printing, Hottake, Thrive, SprintLink |
-| `#/experience` | Experience — 7-item career timeline |
-| `#/prds` | PRDs — Downloadable mock Product Requirement Documents |
-| `#/certifications` | Certifications — AI, Project Management, and more |
+| `/projects` | Projects — FSU ITS 3D Printing, Hottake, Thrive, SprintLink |
+| `/experience` | Experience — 7-item career timeline + certifications |
+| `/prds` | PRDs — Downloadable mock Product Requirement Documents |
 
 The **Contact section** appears at the bottom of every page automatically via the shared `Layout.tsx` component.
 
-> **Note:** The app uses `HashRouter` for GitHub Pages compatibility. URLs will look like `yoursite.com/#/projects` instead of `yoursite.com/projects`.
+Live site: [https://courtneystokes.dev/](https://courtneystokes.dev/)
 
 ---
 
@@ -153,7 +152,9 @@ npm install --save-dev gh-pages
 }
 ```
 
-3. Make sure `vite.config.ts` has the correct `base`:
+3. For the custom domain **courtneystokes.dev**, `vite.config.ts` uses `base: '/'`.
+
+   If you deploy only to `username.github.io/repo-name` (no custom domain), set:
 
 ```ts
 base: '/your-repo-name/'
@@ -171,9 +172,11 @@ Run `npm run build`, then push the `dist/` folder to the `gh-pages` branch of yo
 
 ### React Router + GitHub Pages
 
-This site uses **HashRouter** which works out of the box with GitHub Pages.  
-No 404 fallback file or server config is needed.  
-Routes will look like: `https://yourname.github.io/your-repo/#/projects`
+This site uses **BrowserRouter** with clean URLs (`/projects`, `/experience`, etc.).
+
+The deploy workflow copies `index.html` to `404.html` so direct links and refreshes work on GitHub Pages.
+
+In **Settings → Pages**, set the custom domain to `courtneystokes.dev` and enable HTTPS.
 
 ---
 
