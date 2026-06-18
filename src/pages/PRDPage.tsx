@@ -1,8 +1,30 @@
 import { Download } from 'lucide-react'
 import { prds } from '../data/portfolio'
 import { asset } from '../utils/asset'
+import { useTheme } from '../context/ThemeContext'
+
+const accentColors = ['#A2D2FF', '#FFC8DD', '#FFD6A5', '#FDFFB6']
+const textColors = ['#3D7FA8', '#A0436A', '#9A5C1A', '#7A6F00']
+
+function getBadgeStyle(accent: string, textColor: string, isDark: boolean) {
+  return {
+    backgroundColor: isDark ? accent + '25' : accent + '55',
+    color: isDark ? accent : textColor,
+  }
+}
+
+function getButtonStyle(accent: string, textColor: string, isDark: boolean, hovered = false) {
+  const bgOpacity = hovered ? '55' : isDark ? '25' : '33'
+  return {
+    backgroundColor: accent + bgOpacity,
+    color: isDark ? accent : textColor,
+  }
+}
 
 export default function PRDPage() {
+  const { theme } = useTheme()
+  const isDark = theme === 'dark'
+
   return (
     <section className="min-h-screen py-20 px-6">
       <div className="max-w-6xl mx-auto">
@@ -23,10 +45,9 @@ export default function PRDPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {prds.map((prd, idx) => {
-            const accentColors = ['#A2D2FF', '#FFC8DD', '#FFD6A5', '#FDFFB6']
-            const textColors = ['#3D7FA8', '#A0436A', '#9A5C1A', '#7A6F00']
             const accent = accentColors[idx % accentColors.length]
             const textColor = textColors[idx % textColors.length]
+            const badgeStyle = getBadgeStyle(accent, textColor, isDark)
 
             return (
               <div
@@ -39,7 +60,7 @@ export default function PRDPage() {
                     <h2 className="text-lg font-bold text-[#1F2933] dark:text-[#F0EFE9]">{prd.title}</h2>
                     <span
                       className="text-xs font-semibold px-2.5 py-1 rounded-full flex-shrink-0"
-                      style={{ backgroundColor: accent + '55', color: textColor }}
+                      style={badgeStyle}
                     >
                       {prd.context}
                     </span>
@@ -66,9 +87,17 @@ export default function PRDPage() {
                     href={asset(prd.downloadHref)}
                     download
                     className="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-lg transition-colors w-full"
-                    style={{ backgroundColor: accent + '33', color: textColor }}
-                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = accent + '88')}
-                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = accent + '33')}
+                    style={getButtonStyle(accent, textColor, isDark)}
+                    onMouseEnter={(e) => {
+                      const s = getButtonStyle(accent, textColor, isDark, true)
+                      e.currentTarget.style.backgroundColor = s.backgroundColor
+                      e.currentTarget.style.color = s.color
+                    }}
+                    onMouseLeave={(e) => {
+                      const s = getButtonStyle(accent, textColor, isDark)
+                      e.currentTarget.style.backgroundColor = s.backgroundColor
+                      e.currentTarget.style.color = s.color
+                    }}
                   >
                     <Download size={14} />
                     Download PRD
